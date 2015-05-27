@@ -18,7 +18,7 @@
 				<p:pickList value="#{runController.scenarios}" var="scenario" itemLabel="#{scenario.title}" itemValue="#{scenario}" converter="scenarioConverter"/>
 			</h:panelGroup>
 			<h:panelGroup style="width:100%;" layout="block">
-				<p:commandButton value="Run" action="#{runController.run}" style="margin:10px; padding:5px;"/>
+				<p:commandButton value="Submit" action="#{runController.run}" style="margin:10px; padding:5px;"/>
 				<p:button value="Cancel" outcome="/index.jsf"/>
 			</h:panelGroup>
 		</h:panelGrid>

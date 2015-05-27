@@ -5,18 +5,18 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
-import org.iasa.AppNames;
-import org.iasa.JBehaveWrapper;
+import org.iasa.AppDirectory;
+import org.iasa.testing.JBehaveWrapper;
 import org.jbehave.core.model.Scenario;
 
-@ManagedBean(name = "resultsController")
-public class ResultsController {
+@ManagedBean(name = "historyController")
+public class HistoryController {
 	//private Logger LOG = LoggerFactory.getLogger(ResultsController.class);
 	private List<Scenario> scenarios;
 
 	@PostConstruct
 	public void init() {
-		setScenarios(JBehaveWrapper.getScenarios(AppNames.STORY_FOLDER.get()));
+		setScenarios(JBehaveWrapper.getScenarios(AppDirectory.STORY_RUN_FOLDER.get()));
 	}
 
 	public List<Scenario> getScenarios() {

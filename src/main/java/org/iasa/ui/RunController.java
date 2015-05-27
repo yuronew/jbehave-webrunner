@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
-import org.iasa.JBehaveWrapper;
+import org.iasa.testing.JBehaveWrapper;
 import org.jbehave.core.model.Scenario;
 import org.primefaces.model.DualListModel;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public class RunController {
 	public void run() {
 		LOG.info("Running scearios: " + scenarios.getTarget());
 		JBehaveWrapper.writeRunningScenarios(scenarios.getTarget());
-		JBehaveWrapper.runStories();
+		JBehaveWrapper.runScenarios();
 	}
 
 	public DualListModel<Scenario> getScenarios() {

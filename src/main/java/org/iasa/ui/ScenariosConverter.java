@@ -7,7 +7,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import org.iasa.JBehaveWrapper;
+import org.iasa.testing.JBehaveWrapper;
 import org.jbehave.core.model.Scenario;
 
 @FacesConverter(value="scenarioConverter")

@@ -8,19 +8,22 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>New story</title>
+	<title>New scenario</title>
 </h:head>
 <h:body>
 	<h4>Fill the form below and click Submit to add new story to the framework.</h4>
 	<h:form>
 		<h:panelGrid width="400">
+			Title: <p:inputText label="Title" value="#{addController.title}" required="true"/>
 			<h:panelGroup layout="block">
 				<p:inputTextarea autoResize="true" value="#{addController.story}" style="width:100%;" rows="5"/>
 			</h:panelGroup>
 			<h:panelGroup style="width:100%;" layout="block">
-				<p:commandButton value="Submit" action="#{addController.save}" style="margin:10px; padding:5px;"/>
+				<p:commandButton value="Test" action="#{addController.test}" update="@all" style="margin:10px; padding:5px;"/>
+				<p:commandButton value="Submit" action="#{addController.save}" disabled="#{!addController.valid}" style="margin:10px; padding:5px;"/>
 				<p:button value="Cancel" outcome="/index.jsf" style="float:right; margin:10px; padding:5px;"/>	
 			</h:panelGroup>
+			<p:messages/>
 		</h:panelGrid>
 	</h:form>
 </h:body>
