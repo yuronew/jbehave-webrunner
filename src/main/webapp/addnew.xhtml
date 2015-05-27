@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>New story</title>
+</h:head>
+<h:body>
+	<h4>Fill the form below and click Submit to add new story to the framework.</h4>
+	<h:form>
+		<h:panelGrid width="400">
+			<h:panelGroup layout="block">
+				<p:inputTextarea autoResize="true" value="#{addController.story}" style="width:100%;" rows="5"/>
+			</h:panelGroup>
+			<h:panelGroup style="width:100%;" layout="block">
+				<p:commandButton value="Submit" action="#{addController.save}" style="margin:10px; padding:5px;"/>
+				<p:button value="Cancel" outcome="/index.jsf" style="float:right; margin:10px; padding:5px;"/>	
+			</h:panelGroup>
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>
