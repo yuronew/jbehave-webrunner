@@ -1,2 +1,3 @@
 Scenario: Just open site
-When balboa
+Given user request site
+

@@ -18,12 +18,11 @@
 			<h:panelGroup layout="block">
 				<p:inputTextarea autoResize="true" value="#{addController.story}" style="width:100%;" rows="5"/>
 			</h:panelGroup>
+			<p:messages/>
 			<h:panelGroup style="width:100%;" layout="block">
-				<p:commandButton value="Test" action="#{addController.test}" update="@all" style="margin:10px; padding:5px;"/>
-				<p:commandButton value="Submit" action="#{addController.save}" disabled="#{!addController.valid}" style="margin:10px; padding:5px;"/>
+				<p:commandButton value="Submit" action="#{addController.test}" async="true" update="@all" style="margin:10px; padding:5px;"/>
 				<p:button value="Cancel" outcome="/index.jsf" style="float:right; margin:10px; padding:5px;"/>	
 			</h:panelGroup>
-			<p:messages/>
 		</h:panelGrid>
 	</h:form>
 </h:body>
