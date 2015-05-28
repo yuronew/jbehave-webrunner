@@ -5,12 +5,11 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class AbstractPage {
 	
-	protected static RemoteWebDriver DRIVER;
+	protected static RemoteWebDriver DRIVER = new FirefoxDriver();
 	
 	public static void go(String address){
-		if (DRIVER == null){
+		if (DRIVER.toString() == null){
 			DRIVER = new FirefoxDriver();
-			DRIVER.manage().window().maximize();
 		}
 		DRIVER.get(address);
 	}
@@ -41,7 +40,6 @@ public class AbstractPage {
 	
 	public static void quit(){
 		DRIVER.quit();
-		DRIVER = null;
 	}
 	
 	public static String titleIs(){

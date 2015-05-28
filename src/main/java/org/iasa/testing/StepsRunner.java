@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 import org.iasa.testing.StepsRunner.MyReportBuilder;
 import org.iasa.testing.pages.AbstractPage;
+import org.iasa.testing.pages.MyProfile;
+import org.iasa.testing.steps.GameSteps;
+import org.iasa.testing.steps.MyProfileSteps;
 import org.iasa.testing.steps.RegisterSteps;
 import org.jbehave.core.Embeddable;
 import org.jbehave.core.annotations.Configure;
@@ -23,7 +26,7 @@ import org.slf4j.LoggerFactory;
 @RunWith(AnnotatedEmbedderRunner.class)
 @UsingEmbedder(embedder = Embedder.class, generateViewAfterStories = true, ignoreFailureInStories = true, ignoreFailureInView = true)
 @Configure(storyReporterBuilder = MyReportBuilder.class, storyLoader = WebappStoryLoader.class)
-@UsingSteps(instances = { RegisterSteps.class })
+@UsingSteps(instances = { RegisterSteps.class, GameSteps.class, MyProfileSteps.class })
 public class StepsRunner implements Embeddable {
 	private static Logger LOG = LoggerFactory.getLogger(StepsRunner.class);
 	
