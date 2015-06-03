@@ -1,3 +1,6 @@
+Scenario: Just open site
+Given user request site
+
 Scenario: There is an account registered on this email
 Given user request site
 When user fill in the form with userTest-1, usertesty8@gmail.com, qwerty777

@@ -9,14 +9,19 @@
 
 <h:head>
 	<title>Run story</title>
+	<style type="text/css">
+    	.picklist-main .ui-picklist-list {
+    		width: 400px;
+    	}
+	</style>
 </h:head>
 <h:body>
 	<h4>Select scenarios for test collection. You can also use drag-n-drop.</h4>
 	<h:panelGrid columns="2">
 		<h:form>
-			<h:panelGrid width="400">
-				<h:panelGroup layout="block">
-					<p:pickList value="#{runController.scenarios}" var="scenario" itemLabel="#{scenario.title}" itemValue="#{scenario}" converter="scenarioConverter"/>
+			<h:panelGrid width="700">
+				<h:panelGroup layout="block" styleClass="picklist-main">
+					<p:pickList value="#{runController.scenarios}" var="scenario" itemLabel="#{scenario.title}" itemValue="#{scenario}" converter="scenarioConverter" />
 				</h:panelGroup>
 				<h:panelGroup style="width:100%;" layout="block">
 					<p:commandButton value="Submit" action="#{runController.run}" update="@all" style="margin:10px; padding:5px;"/>
