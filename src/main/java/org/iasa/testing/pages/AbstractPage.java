@@ -60,14 +60,14 @@ public class AbstractPage {
 		return result;
 	}
 	
-	public void tryFiveTimes(Runnable func){
+	public void tryFiveTimes(Executable func){
 		boolean finished = false;
 		int i = 0;
 		while (finished != true){
 			try {
 				func.run();
 				finished = true;
-			} catch (NoSuchElementException e){
+			} catch (Exception e){
 				LOG.error("Failed to perform", e);
 			}
 			
@@ -75,6 +75,10 @@ public class AbstractPage {
 				finished = true;
 			}
 		}
+	}
+	
+	public interface Executable {
+		public void run () throws Exception; 
 	}
 
 }
