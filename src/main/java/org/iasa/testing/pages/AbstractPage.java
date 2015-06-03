@@ -1,17 +1,29 @@
 package org.iasa.testing.pages;
 
+import java.util.NoSuchElementException;
+
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.SessionNotFoundException;
+import org.openqa.selenium.remote.UnreachableBrowserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AbstractPage {
-	
-	protected static RemoteWebDriver DRIVER = new FirefoxDriver();
+	private static final Logger LOG = LoggerFactory.getLogger(AbstractPage.class);
+	protected static RemoteWebDriver DRIVER;
 	
 	public static void go(String address){
-		if (DRIVER.toString() == null){
+		if (DRIVER == null){
 			DRIVER = new FirefoxDriver();
+			DRIVER.manage().window().maximize();
 		}
-		DRIVER.get(address);
+		try {
+			DRIVER.get(address);
+		} catch (SessionNotFoundException | UnreachableBrowserException e){
+			DRIVER = new FirefoxDriver();
+			DRIVER.get(address);
+		}
 	}
 	
 	public static void checkMessage(String message){
@@ -40,6 +52,7 @@ public class AbstractPage {
 	
 	public static void quit(){
 		DRIVER.quit();
+		DRIVER = null;
 	}
 	
 	public static String titleIs(){
@@ -47,5 +60,21 @@ public class AbstractPage {
 		return result;
 	}
 	
+	public void tryFiveTimes(Runnable func){
+		boolean finished = false;
+		int i = 0;
+		while (finished != true){
+			try {
+				func.run();
+				finished = true;
+			} catch (NoSuchElementException e){
+				LOG.error("Failed to perform", e);
+			}
+			
+			if (i++ >= 5){
+				finished = true;
+			}
+		}
+	}
 
 }

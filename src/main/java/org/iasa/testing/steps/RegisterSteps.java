@@ -6,23 +6,23 @@ import org.iasa.testing.pages.RegistryForm;
 import org.jbehave.core.annotations.*;
 
 public class RegisterSteps{
-	Index index = new Index();
-	RegistryForm registryForm = new RegistryForm();
-	Home home = new Home();
+	private Index index;
+	private RegistryForm registryForm;
+	private Home home;
 	
 	@Given("user request site")
 	public void givenUserRequestSite(){
-		 index.go("http://www.y8.com/");
+//		 AbstractPage.go("http://www.y8.com/");
 	}
 	
 	@When("user fill in the form with $username, $email, $password")
 	public void whenUserFillInTheForm(String username, String email, String password){
-		registryForm.fillTheForm(username, email, password);
+		getRegistryForm().fillTheForm(username, email, password);
 	}
 	
 	@Then("verify \"$field\" is present")
 	public void thenVerifyfieldIsPresent(String field){
-		 home.isPresent(field);  
+		AbstractPage.isPresent(field);  
 	}
 	
 	@Then("verify message is \"$message\"")
@@ -37,18 +37,38 @@ public class RegisterSteps{
 	
 	@When ("user logs in with $email and $password")
 	public void userLogsInWithMailAndPassword(String email, String password){
-		index.logIn(email, password);
+		getIndex().logIn(email, password);
 	}
 	
 	@Given("user is in system")
 	public void userInSystem(){
-		index.go("http://www.y8.com/");
-		index.inSystem();
+		AbstractPage.go("http://www.y8.com/");
+		getIndex().inSystem();
 	}
 	
 	@Then("user log out")
 	public void userLogOut(){
-		home.logOut();
+		getHome().logOut();
 	}
-	
+
+	public Index getIndex() {
+		if (index == null){
+			index = new Index();
+		}
+		return index;
+	}
+
+	public RegistryForm getRegistryForm() {
+		if (registryForm == null){
+			registryForm = new RegistryForm();
+		}
+		return registryForm;
+	}
+
+	public Home getHome() {
+		if (home == null){
+			home = new Home();
+		}
+		return home;
+	}
 }

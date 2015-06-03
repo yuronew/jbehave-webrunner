@@ -17,7 +17,7 @@ public class MyProfileSteps {
 	
 	@Given("user request site")
 	public void givenUserRequestSite(){
-		 index.go("http://www.y8.com/");
+		AbstractPage.go("http://www.y8.com/");
 	}
 	
 	@Then("verify \"$field\" is present")

@@ -22,7 +22,6 @@ public class RunController {
 	}
 
 	public void run() {
-		LOG.info("Running scearios: " + scenarios.getTarget());
 		JBehaveWrapper.writeRunningScenarios(scenarios.getTarget());
 		JBehaveWrapper.runScenarios();
 	}

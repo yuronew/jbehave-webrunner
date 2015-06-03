@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import org.iasa.testing.StepsRunner.MyReportBuilder;
 import org.iasa.testing.pages.AbstractPage;
-import org.iasa.testing.pages.MyProfile;
 import org.iasa.testing.steps.GameSteps;
 import org.iasa.testing.steps.MyProfileSteps;
 import org.iasa.testing.steps.RegisterSteps;
