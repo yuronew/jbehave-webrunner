@@ -6,15 +6,14 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 import org.iasa.testing.JBehaveWrapper;
+import org.iasa.testing.JBehaveWrapper.Results;
 import org.jbehave.core.model.Scenario;
 import org.primefaces.model.DualListModel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @ManagedBean(name = "runController")
 public class RunController {
-	private Logger LOG = LoggerFactory.getLogger(RunController.class);
 	private DualListModel<Scenario> scenarios;
+	private Results results;
 
 	@PostConstruct
 	public void init() {
@@ -23,7 +22,7 @@ public class RunController {
 
 	public void run() {
 		JBehaveWrapper.writeRunningScenarios(scenarios.getTarget());
-		JBehaveWrapper.runScenarios();
+		this.results = JBehaveWrapper.runScenarios();
 	}
 
 	public DualListModel<Scenario> getScenarios() {
@@ -32,5 +31,13 @@ public class RunController {
 
 	public void setScenarios(DualListModel<Scenario> scenarios) {
 		this.scenarios = scenarios;
+	}
+
+	public Results getResults() {
+		return results;
+	}
+
+	public void setResults(Results results) {
+		this.results = results;
 	}
 }

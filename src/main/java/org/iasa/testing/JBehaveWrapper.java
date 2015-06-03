@@ -14,6 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 import org.iasa.AppDirectory;
@@ -87,13 +88,59 @@ public class JBehaveWrapper {
 		return false;
 	}
 
-	public static void runScenarios() {
+	public static Results runScenarios() {
+		Results results = new Results();
 		CURRENT_DIRECTORY = AppDirectory.STORY_RUN_FOLDER;
 		run();
+		
+		Properties stats = new Properties();
+		try {
+			stats.load(new FileReader(AppDirectory.TARGET_JBEHAVE.get()));
+			results.setScenarios(Integer.valueOf(stats.getProperty("scenarios")));
+			results.setSteps(Integer.valueOf(stats.getProperty("steps")));
+			results.setSuccessfulScenarios(Integer.valueOf(stats.getProperty("scenariosSuccessful")));
+			results.setFailedScenarios(Integer.valueOf(stats.getProperty("scenariosFailed")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return results;
 	}
 	
 	public static AppDirectory getCurrentWorkingFolder(){
 		return CURRENT_DIRECTORY;
+	}
+	
+	public static class Results{
+		private int scenarios;
+		private int steps;
+		private int failedScenarios;
+		private int successfulScenarios;
+		
+		public int getScenarios() {
+			return scenarios;
+		}
+		public void setScenarios(int scenarios) {
+			this.scenarios = scenarios;
+		}
+		public int getSteps() {
+			return steps;
+		}
+		public void setSteps(int steps) {
+			this.steps = steps;
+		}
+		public int getFailedScenarios() {
+			return failedScenarios;
+		}
+		public void setFailedScenarios(int failedScenario) {
+			this.failedScenarios = failedScenario;
+		}
+		public int getSuccessfulScenarios() {
+			return successfulScenarios;
+		}
+		public void setSuccessfulScenarios(int successfulScenarios) {
+			this.successfulScenarios = successfulScenarios;
+		}
 	}
 
 }

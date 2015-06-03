@@ -1,7 +1,5 @@
 package org.iasa.testing.pages;
 
-import java.util.NoSuchElementException;
-
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionNotFoundException;
@@ -68,7 +66,7 @@ public class AbstractPage {
 				func.run();
 				finished = true;
 			} catch (Exception e){
-				LOG.error("Failed to perform", e);
+				LOG.error("Failed to perform");
 			}
 			
 			if (i++ >= 5){
