@@ -9,27 +9,29 @@
 
 <h:head>
 	<title>Run story</title>
+	<link type="text/css" rel="stylesheet" href="resources/css/common.css"/>
 	<style type="text/css">
     	.picklist-main .ui-picklist-list {
-    		width: 400px;
+    		width: 440px;
     	}
 	</style>
 </h:head>
-<h:body>
+<h:body style="background:url('resources/images/bg-main.png') repeat-x scroll 0% 0% transparent">
 	<h4>Select scenarios for test collection. You can also use drag-n-drop.</h4>
-	<h:panelGrid columns="2">
+	<h:panelGrid columns="2" style="margin-left: auto; margin-right: auto;">
 		<h:form>
 			<h:panelGrid width="700">
 				<h:panelGroup layout="block" styleClass="picklist-main">
 					<p:pickList value="#{runController.scenarios}" var="scenario" itemLabel="#{scenario.title}" itemValue="#{scenario}" converter="scenarioConverter" />
 				</h:panelGroup>
 				<h:panelGroup style="width:100%;" layout="block">
-					<p:commandButton value="Submit" action="#{runController.run}" update="@all" style="margin:10px; padding:5px;"/>
-					<p:button value="Cancel" outcome="/index.jsf"/>
+					<p:commandButton value="Submit" action="#{runController.run}" update="@all" styleClass="run-buttons"/>
+					<p:button value="Cancel" outcome="/index.jsf" styleClass="run-buttons"/>					
 				</h:panelGroup>
 			</h:panelGrid>
 		</h:form>
 		<h:panelGrid columns="1" style="float:right;">
+			<p:commandButton value="Reload WebDriver" action="#{runController.reloadWebdriver}" styleClass="run-buttons"/>
 			<h:outputText value="Scenarios ran: #{runController.results.scenarios}"/>
 			<h:outputText style="color:green;" value="Scenarios successful: #{runController.results.successfulScenarios}"/>
 			<h:outputText style="color:red;" value="Scenarios failed: #{runController.results.failedScenarios}"/>

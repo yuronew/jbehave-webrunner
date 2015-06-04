@@ -13,13 +13,12 @@ public class AbstractPage {
 	
 	public static void go(String address){
 		if (DRIVER == null){
-			DRIVER = new FirefoxDriver();
-			DRIVER.manage().window().maximize();
+			reloadWebDriver();
 		}
 		try {
 			DRIVER.get(address);
 		} catch (SessionNotFoundException | UnreachableBrowserException e){
-			DRIVER = new FirefoxDriver();
+			reloadWebDriver();			
 			DRIVER.get(address);
 		}
 	}
@@ -77,6 +76,11 @@ public class AbstractPage {
 	
 	public interface Executable {
 		public void run () throws Exception; 
+	}
+
+	public static void reloadWebDriver() {
+		DRIVER = new FirefoxDriver();
+		DRIVER.manage().window().maximize();
 	}
 
 }

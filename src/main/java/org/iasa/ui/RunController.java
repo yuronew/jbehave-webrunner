@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 
 import org.iasa.testing.JBehaveWrapper;
 import org.iasa.testing.JBehaveWrapper.Results;
+import org.iasa.testing.pages.AbstractPage;
 import org.jbehave.core.model.Scenario;
 import org.primefaces.model.DualListModel;
 
@@ -24,6 +25,11 @@ public class RunController {
 		JBehaveWrapper.writeRunningScenarios(scenarios.getTarget());
 		this.results = JBehaveWrapper.runScenarios();
 	}
+	
+	public void reloadWebdriver() {
+		AbstractPage.reloadWebDriver();
+	}
+
 
 	public DualListModel<Scenario> getScenarios() {
 		return scenarios;

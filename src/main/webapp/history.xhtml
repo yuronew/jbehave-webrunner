@@ -6,23 +6,59 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-
 <h:head>
 	<title>History</title>
+	<link type="text/css" rel="stylesheet" href="resources/css/common.css"/>
+	<style type="text/css">	
+		.steps-list .ui-datalist-data{
+			margin-left: 0px;
+		}
+	
+		.steps-list .ui-widget-content {
+			border: none !important;
+		}
+	</style>
 </h:head>
-<h:body>
+<h:body style="background:url('resources/images/bg-main.png') repeat-x scroll 0% 0% transparent">
 	<h4>Here is what has been executed for the last time.</h4>
+	<h:panelGrid columns="2" style="margin-left: auto; margin-right: auto;">
 	<h:form>
 		<h:panelGrid width="600">
 			<h:panelGroup layout="block">
-				<p:dataList value="#{historyController.scenarios}" var="sc">			        
-			        #{sc.title}
+				<p:dataList value="#{historyController.scenarios}" var="sc" type="unordered" itemType="none">			        
+			        <p:commandLink update="@form" oncomplete="PF('scenarioDialog').show()" title="View Detail" styleClass="ui-icon ui-icon-search" style="float:left;margin-right:10px">
+			            <f:setPropertyActionListener value="#{sc}" target="#{historyController.selectedScenario}" />
+			        </p:commandLink>
+		            <h:outputText value="#{sc.title}"/>
 			    </p:dataList>
 			</h:panelGroup>
 			<h:panelGroup style="width:100%;" layout="block">
-				<p:button value="Cancel" outcome="/index.jsf"/>
+				<p:commandButton value="Run again" action="#{historyController.runAgain}" update="@all" styleClass="run-buttons"/>
+				<p:button value="Cancel" outcome="/index.jsf" styleClass="run-buttons"/>
 			</h:panelGroup>
 		</h:panelGrid>
+				
+		<p:dialog header="Scenario Info" widgetVar="scenarioDialog" modal="true" showEffect="blind" hideEffect="explode" resizable="false">
+	        <p:outputPanel id="scenarioDetail" style="text-align:left;">
+	            <p:panelGrid  columns="2" rendered="#{historyController.selectedScenario != null}" columnClasses="label">
+	                <h:outputText value="Title:" />
+	                <h:outputText value="#{historyController.selectedScenario.title}" />
+	                <h:outputText value="Steps:" />
+		            <p:dataList value="#{historyController.selectedScenario.steps}" var="step" type="unordered" itemType="none" styleClass="steps-list">
+						#{step}                
+		            </p:dataList>
+		            <h:outputText value="Status:" />
+		            	                
+	            </p:panelGrid>
+	        </p:outputPanel>
+	    </p:dialog>
 	</h:form>
+	<h:panelGrid columns="1" style="float:right;" rendered="#{historyController.results != null}">
+		<p:commandButton value="Reload WebDriver" action="#{runController.reloadWebdriver}" styleClass="run-buttons"/>
+		<h:outputText value="Scenarios ran: #{historyController.results.scenarios}"/>
+		<h:outputText style="color:green;" value="Scenarios successful: #{historyController.results.successfulScenarios}"/>
+		<h:outputText style="color:red;" value="Scenarios failed: #{historyController.results.failedScenarios}"/>
+	</h:panelGrid>
+	</h:panelGrid>
 </h:body>
 </html>
