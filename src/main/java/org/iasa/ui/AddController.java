@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -28,6 +30,7 @@ public class AddController {
 	private String title;
 	private String story;
 	private boolean valid = false;
+	private List<String> allSteps;
 
 	public String getStory() {
 		return story;
@@ -101,5 +104,16 @@ public class AddController {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public List<String> getAllSteps() {
+		if (allSteps == null){
+			allSteps = JBehaveWrapper.getDefaultScenarios().stream().flatMap(sc -> sc.getSteps().stream()).collect(Collectors.toList());
+		}
+		return allSteps;
+	}
+
+	public void setAllSteps(List<String> allSteps) {
+		this.allSteps = allSteps;
 	}
 }

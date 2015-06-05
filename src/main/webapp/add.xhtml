@@ -13,15 +13,26 @@
 <h:body style="background:url('resources/images/bg-main.png') repeat-x scroll 0% 0% transparent">
 	<h4>Fill the form below and click Submit to add new story to the framework.</h4>
 	<h:form>
-		<h:panelGrid width="400">
-			Title: <p:inputText label="Title" value="#{addController.title}" required="true"/>
-			<h:panelGroup layout="block">
-				<p:inputTextarea autoResize="true" value="#{addController.story}" style="width:100%;" rows="5"/>
-			</h:panelGroup>
-			<p:messages/>
-			<h:panelGroup style="width:100%;" layout="block">
-				<p:commandButton value="Submit" action="#{addController.test}" async="true" update="@all" style="margin:10px; padding:5px;"/>
-				<p:button value="Cancel" outcome="/index.jsf" style="float:right; margin:10px; padding:5px;"/>	
+		<h:panelGrid columns="2" cellpadding="10">
+			<h:panelGrid width="400">
+				<h:panelGroup layout="block">
+					<h:outputLabel value="Title:" for="title"/>
+					<p:inputText id="title" value="#{addController.title}" style="margin:10px;" required="true"/>
+				</h:panelGroup>
+				<h:panelGroup layout="block">
+					<p:inputTextarea autoResize="true" value="#{addController.story}" style="width:100%;" rows="5"/>
+				</h:panelGroup>
+				<p:messages/>
+				<h:panelGroup style="width:100%;" layout="block">
+					<p:commandButton value="Submit" action="#{addController.test}" async="true" update="@all" style="margin:10px; padding:5px;"/>
+					<p:button value="Cancel" outcome="/index.jsf" style="float:right; margin:10px; padding:5px;"/>	
+				</h:panelGroup>
+			</h:panelGrid>
+			<h:panelGroup>
+				<h3>Existing steps:</h3>
+				<p:dataList value="#{addController.allSteps}" var="step">
+					#{step}
+				</p:dataList>
 			</h:panelGroup>
 		</h:panelGrid>
 	</h:form>
