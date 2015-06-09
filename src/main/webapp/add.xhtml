@@ -28,13 +28,13 @@
 					<p:button value="Cancel" outcome="/index.jsf" style="float:right; margin:10px; padding:5px;"/>	
 				</h:panelGroup>
 			</h:panelGrid>
-			<h:panelGroup>
-				<h3>Existing steps:</h3>
-				<p:dataList value="#{addController.allSteps}" var="step">
-					#{step}
-				</p:dataList>
-			</h:panelGroup>
 		</h:panelGrid>
+		<h:panelGroup>
+			<h3>Existing steps:</h3>
+			<p:dataList value="#{addController.allSteps}" var="step">
+				#{step}
+			</p:dataList>
+		</h:panelGroup>
 	</h:form>
 </h:body>
 </html>
