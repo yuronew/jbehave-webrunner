@@ -1,3 +1,2 @@
-Scenario: Just open site
-Given user request siteScenario: Just open site
-asfasfasfsa
+Scenario: Just open site #1 #2
+Given user request site

@@ -3,9 +3,7 @@ package org.iasa.ui;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 
 import org.iasa.testing.JBehaveWrapper;
 import org.iasa.testing.JBehaveWrapper.Results;
@@ -42,8 +40,9 @@ public class RunController {
 				setScenarios(new DualListModel<Scenario>(SearchEngine.getScenariosByTags(searchString), getScenarios().getTarget()));
 				break;
 			case "min":
-				FacesContext.getCurrentInstance().addMessage("searchError", 
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Not implemented yet.", null));
+//				FacesContext.getCurrentInstance().addMessage("searchError", 
+//						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Not implemented yet.", null));
+				setScenarios(new DualListModel<Scenario>(SearchEngine.getMinScenariosByTags(searchString), getScenarios().getTarget()));
 		}
 			
 	}
